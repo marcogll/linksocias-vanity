@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Links para socias</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stars.css">
     <!-- Font Awesome icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 </head>
 <body>
-    <div id="loginContainer">
-        <h2>Ingresa la contraseña</h2>
-        <input type="password" id="password" placeholder="Contraseña">
-        <button onclick="checkPassword()">Entrar</button>
+    <div id="confirmationContainer">
+        <h2>Confirmación de Uso Privado</h2>
+        <p class="animated-text">El contenido de este sitio es privado y solo para uso del personal de Vanity.</p>
+        <label class="custom-checkbox">
+            <input type="checkbox" id="confirmationCheckbox">
+            <span class="checkmark"></span>
+            He leído y acepto
+        </label>
+        <button id="confirmButton" onclick="confirmUse()">
+            <i class="fas fa-check"></i> Confirmar
+        </button>
     </div>
 
     <div id="mainContent">
