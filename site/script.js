@@ -1,16 +1,36 @@
-const correctPassword = "Glam24-Press#2"; // Cambia esta línea por la contraseña deseada
 const expirationTime = 24 * 60 * 60 * 1000; // 24 horas en milisegundos
 
-function checkPassword() {
-    const password = document.getElementById("password").value;
-    if (password === correctPassword) {
+function confirmUse() {
+    const checkbox = document.getElementById("confirmationCheckbox");
+    if (checkbox.checked) {
         const now = new Date().getTime();
-        localStorage.setItem("authenticated", now + expirationTime);
-        showMainContent();
+        localStorage.setItem("useConfirmed", now + expirationTime);
+        document.getElementById("confirmationContainer").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
     } else {
-        alert("Contraseña incorrecta");
+        alert("Debes confirmar que has leído y aceptado los términos.");
     }
 }
+
+function checkConfirmation() {
+    const useConfirmed = localStorage.getItem("useConfirmed");
+    const now = new Date().getTime();
+    if (useConfirmed && now < useConfirmed) {
+        document.getElementById("confirmationContainer").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+    } else {
+        localStorage.removeItem("useConfirmed");
+        document.getElementById("confirmationContainer").style.display = "block";
+    }
+}
+
+// Verificar la confirmación al cargar la página
+checkConfirmation();
+
+
+// Mostrar el contenedor de confirmación al cargar la página
+document.getElementById("confirmationContainer").style.display = "block";
+
 
 function showMainContent() {
     document.getElementById("loginContainer").style.display = "none";
